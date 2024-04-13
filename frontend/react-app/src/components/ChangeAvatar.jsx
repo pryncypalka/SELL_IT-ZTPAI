@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
-
+import styles from '../css/ChangeAvatar.module.css';
+import { Form, Button } from 'react-bootstrap';
+import BlueButton from "./BlueButton";
 function ChangeAvatar({ avatarPath }) {
     return (
-        <form action="changeAvatar" method="post" encType="multipart/form-data">
-            <p className="Change_avatar">Change avatar</p>
+        <form className={styles.formChangeAvatar} action="changeAvatar" method="post" encType="multipart/form-data">
+            <p className={styles.changeAvatar}>Change avatar</p>
 
-            <img className="avatar_preview" src={avatarPath}
+            <img className={styles.avatar_preview} src={avatarPath}
                  alt="avatar_preview"/>
-            <input type="file" name="file"/><br/>
-            <button type="submit">Send</button>
+            <input  className={styles.inputFile}  type="file" name="file"/><br/>
+            <BlueButton text="Send"/>
         </form>
     );
 }

@@ -1,0 +1,25 @@
+p  {
+    color: #FFF;
+    font-family: Poppins, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.avatarImage{
+
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+
+}
+
+.avatar {
+    display: flex ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}

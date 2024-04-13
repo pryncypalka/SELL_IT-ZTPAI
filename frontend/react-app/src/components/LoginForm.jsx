@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-
+import styles from '../css/LoginForm.module.css';
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [messages, setMessages] = useState([]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,16 +19,12 @@ function LoginForm() {
     };
 
     return (
-        <form className="form_login" onSubmit={handleSubmit}>
-            <div className="text1">Log in</div>
-            <div className="text2">Enter your details below</div>
-            <div className="messages">
-                {messages.map((message, index) => (
-                    <div key={index}>{message}</div>
-                ))}
-            </div>
-            <div className="field_name">Your Email</div>
-            <div className="input_field">
+        <form className={styles.form_login} onSubmit={handleSubmit}>
+            <div className={styles.text1}>Log in</div>
+            <div className={styles.text2}>Enter your details below</div>
+
+            <div className={styles.field_name}>Your Email</div>
+            <div className={styles.input_field}>
                 <input
                     type="text"
                     name="email"
@@ -36,8 +32,8 @@ function LoginForm() {
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
-            <div className="field_name">Password</div>
-            <div className="input_field">
+            <div className={styles.field_name}>Password</div>
+            <div className={styles.input_field}>
                 <input
                     type="password"
                     name="password"
@@ -45,13 +41,11 @@ function LoginForm() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
-            <button className="log_in_button" type="submit">
+            <button className={styles.log_in_button} type="submit">
                 Log in
             </button>
-            <div className="field_name">Don't have an account?</div>
-            <a className="signup_link" href="/signup">
-                Sign up
-            </a>
+            <a className={styles.field_name} href="/signup">Don't have an account?</a>
+
         </form>
     );
 }

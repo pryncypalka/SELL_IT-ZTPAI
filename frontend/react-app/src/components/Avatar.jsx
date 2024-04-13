@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from '../css/Avatar.module.css';
 
 function Avatar({ imagePath, username }) {
     return (
-        <div className="avatar">
-            <img src={imagePath} alt="avatar"/>
+        <div className={styles.avatar}>
+            <img className={styles.avatarImage}  src={imagePath} alt="avatar"/>
             <p id="username">{username}</p>
         </div>
     );

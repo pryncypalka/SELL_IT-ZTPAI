@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import styles from '../css/BlueButton.module.css';
 function BlueButton({ text, onClick }) {
     return (
-        <button type="button" className="blue-button" onClick={onClick}>
+        <button type="button" className={styles.blueButton} onClick={onClick}>
             {text}
         </button>
     );

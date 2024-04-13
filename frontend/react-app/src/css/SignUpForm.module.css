@@ -1,0 +1,79 @@
+.sign_up_button {
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+
+    display: inline-block;
+    padding: 0;
+    border: none;
+    background-color: #3D5CFF;
+    border-radius: 12px;
+    background-size: cover;
+    width: 200px;
+    height: 60px;
+    cursor: pointer;
+
+
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 60px;
+    text-align: center;
+}
+
+
+
+
+.form_sign_up {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10vw;
+    width: 40vw;
+}
+
+.text1 {
+    color: #FFF;
+    font-family: Poppins, serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 15px;
+}
+
+.text2, .email-message, .password-message {
+    color: #FFF;
+    font-family: Poppins, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 15px;
+}
+
+.field_name {
+    color: #FFF;
+    font-family: Poppins, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.input_field input {
+    width: 400px;
+    height: 50px;
+    outline: none;
+    background-color: #3E3E55;
+    border-radius: 12px;
+    background-size: cover;
+    padding-left: 5%;
+    max-width: 95%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    color: #FFF;
+}

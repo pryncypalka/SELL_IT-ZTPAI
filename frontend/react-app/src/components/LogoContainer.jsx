@@ -1,11 +1,11 @@
 
-
+import '../css/LogoContainer.css'
 function LogoContainer() {
     return (
-        <nav>
+        <div className='logoBox'>
             <img className="logo" src="/assets/image/logo.png" alt="Logo" />
                 <div className="textLogo">SELL-IT</div>
-        </nav>
+        </div>
     );
 }
 

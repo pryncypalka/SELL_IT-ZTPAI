@@ -1,0 +1,19 @@
+
+.logoBox {
+padding: 20px;
+
+}
+
+.logo {
+    margin: 20px;
+    border-radius: 30px;
+}
+
+.textLogo {
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

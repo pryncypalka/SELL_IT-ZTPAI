@@ -1,5 +1,3 @@
-// import styles from '../css/SignUpPicture.module.css'
-
 function LoginPicture() {
   return (
       <div className="picture_box">
