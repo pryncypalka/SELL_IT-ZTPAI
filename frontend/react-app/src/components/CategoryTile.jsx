@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-
+import styles from '../css/CategoryTile.module.css';
 function CategoryTile({ category, imagePath }) {
     return (
-        <div className="category_tile" >
-            <img className="category_image" src={imagePath} alt="category_image"/>
-            <div className="category_name">{category}</div>
+        <div className={styles.category_tile} >
+            <img className={styles.category_image} src={imagePath} alt="category_image"/>
+            <div className={styles.category_name}>{category}</div>
         </div>
     );
 }

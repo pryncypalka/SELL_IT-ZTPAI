@@ -1,0 +1,14 @@
+.search_field, .input_search{
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: #3E3E55;
+    border-radius: 12px;
+    background-size: cover;
+    padding-left: 5%;
+    max-width: 95%;
+    white-space: nowrap;
+    box-sizing: border-box;
+    color: #FFF; /* Kolor tekstu */
+}

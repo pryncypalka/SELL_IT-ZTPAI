@@ -1,14 +1,16 @@
-import PropTypes from 'prop-types';
 
+import styles from '../css/OfferTile.module.css';
+import PropTypes from 'prop-types';
 function OfferTile(props) {
     return (
-        <div className="offer_tile">
-            <img className="offer_image" src={props.image} alt="offer_image"/>
+
+        <div className={styles.offer_tile}>
+            <img className={styles.offer_image} src={props.image} alt="offer_image"/>
             <div className="offer_info">
-                <div className="offer_name">{props.name}</div>
-                <div className="offer_first_line">{props.firstLine}</div>
-                <div className="offer_price">{props.price}</div>
-                <div className="offer_date">{props.date}</div>
+                <div className={styles.offer_name}>{props.name}</div>
+                <div className={styles.offer_first_line}>{props.firstLine}</div>
+                <div className={styles.offer_price}>{props.price}</div>
+                <div className={styles.offer_date}>{props.date}</div>
                 <button type="submit" onClick=''>Delete</button>
             </div>
         </div>
@@ -24,7 +26,7 @@ OfferTile.propTypes = {
 };
 
 OfferTile.defaultProps = {
-    image: '/assets/image/offer_default.png',
+    image: '/assets/image/logo.png',
     name: 'Default Name',
     firstLine: 'Default First Line',
     price: 0,

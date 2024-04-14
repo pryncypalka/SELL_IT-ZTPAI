@@ -1,0 +1,47 @@
+.result_box {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5vw;
+    overflow: hidden;
+    width: 30vw;
+    height: 80vh;
+
+}
+
+.result_tiles_container {
+    overflow-y: auto;
+    width: 40vw;
+}
+
+.category_container {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 45vw;
+}
+
+.categories_box {
+    margin-left: 5vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 80vh;
+}
+
+ .categories_text {
+    color: #FFF;
+    font-family: Poppins, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+
+}

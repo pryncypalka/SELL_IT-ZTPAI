@@ -1,0 +1,54 @@
+.your_offers, .your_templates {
+    color: #FFF;
+    font-family: Poppins, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.offers_box {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5vw;
+    overflow: hidden;
+    width: 40vw;
+    height: 80vh;
+
+}
+
+.templates_box {
+    margin-left: 5vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 80vh;
+}
+
+.template_tiles_container {
+    /*white-space: nowrap;*/
+    overflow-y: auto;
+    flex: 1;
+    width: 40vw;
+    height: 300px;
+
+}
+
+.offer_tiles_container {
+    overflow-x: auto;
+    width: 40vw;
+}
+
+.add_new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.container_main {
+    display: flex;
+    flex-direction: row;
+}

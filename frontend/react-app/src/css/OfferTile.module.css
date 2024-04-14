@@ -1,0 +1,58 @@
+.offer_tile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 400px;
+    height: 150px;
+    background-color: #2F2F42;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.offer_name {
+    color: #FFF;
+    font-family: Poppins, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.offer_first_line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    color: #FFF;
+    font-family: Poppins, serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.offer_price {
+    color: #3D5CFF;
+    font-family: Poppins, serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.offer_date {
+    color: #FF6905;
+    font-family: Poppins, serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.offer_image {
+    margin-left: 10px;
+    margin-right: 5px;
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+}
