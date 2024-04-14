@@ -25,8 +25,9 @@ public class AllegroIntegrationData {
     @Column(name = "id_integration", nullable = false)
     private Integer idIntegration;
 
-    @Column(name = "id_user")
-    private Integer idUser;
+    @OneToOne
+    @JoinColumn(name = "id_user")
+    private Users users;
 
     @Column(name = "access_token")
     private String accessToken;
@@ -39,9 +40,11 @@ public class AllegroIntegrationData {
 
     @Column(name = "allegro_domain")
     private String allegroDomain;
+
     @CreationTimestamp
     @Column(name = "created_at")
     private Timestamp createdAt;
+
     @UpdateTimestamp
     @Column(name = "updated_at" )
     private Timestamp updatedAt;

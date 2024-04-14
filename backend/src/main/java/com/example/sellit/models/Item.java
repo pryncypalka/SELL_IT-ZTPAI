@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,4 +23,10 @@ public class Item {
 
     @Column(name = "item_name", nullable = false)
     private String itemName;
+
+    @ManyToMany
+    @JoinTable(name = "item_subcategory",
+            joinColumns = @JoinColumn(name = "item_id"),
+            inverseJoinColumns = @JoinColumn(name = "subcategory_id"))
+    private Set<Subcategories> subcategories;
 }

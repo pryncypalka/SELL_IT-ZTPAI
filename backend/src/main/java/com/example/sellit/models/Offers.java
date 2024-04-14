@@ -34,7 +34,8 @@ public class Offers {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users users;
 }
 

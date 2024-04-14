@@ -21,8 +21,9 @@ public class OpenAIIntegrationData {
     @Column(name = "prompt_id", nullable = false)
     private Integer promptId;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private Users users;
 
     @Column(name = "prompt_result")
     private String promptResult;

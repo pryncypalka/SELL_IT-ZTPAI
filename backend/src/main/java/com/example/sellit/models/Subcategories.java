@@ -19,8 +19,9 @@ public class Subcategories {
     @Column(name = "subcategory_id", nullable = false)
     private Integer subcategoryId;
 
-    @Column(name = "category_id")
-    private Integer categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private  Categories categories;
 
     @Column(name = "subcategory_name", nullable = false)
     private String subcategoryName;

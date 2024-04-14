@@ -21,11 +21,13 @@ public class Templates {
     @Column(name = "template_id", nullable = false)
     private Integer templateId;
 
-    @Column(name = "item_id")
-    private Integer itemId;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users users;
 
     @Column(name = "title", nullable = false)
     private String title;

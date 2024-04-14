@@ -22,6 +22,7 @@ public class Photos {
     @Column(name = "photo_path", nullable = false)
     private String photoPath;
 
-    @Column(name = "offer_id")
-    private Integer offerId;
+    @ManyToOne
+    @JoinColumn(name = "offer_id")
+    private Offers offers;
 }

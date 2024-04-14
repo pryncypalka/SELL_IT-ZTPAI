@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -31,8 +32,10 @@ public class Users {
     @CreationTimestamp
     private Timestamp createTime;
 
-    @Column(name = "id_user_details", nullable = false)
-    private Integer idUserDetails;
+
+    @OneToOne
+    @JoinColumn(name = "id_user_details")
+    private UserDetails userDetails;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -40,4 +43,10 @@ public class Users {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
+
+    @ManyToMany
+    @JoinTable(name = "usersRole",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "id_role"))
+    private Set<Role> roles;
 }
