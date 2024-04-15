@@ -11,7 +11,7 @@ function OfferTile(props) {
                 <div className={styles.offer_first_line}>{props.firstLine}</div>
                 <div className={styles.offer_price}>{props.price}</div>
                 <div className={styles.offer_date}>{props.date}</div>
-                <button type="submit" onClick=''>Delete</button>
+                <button className={styles.delete_button} type="submit" onClick=''>Delete</button>
             </div>
         </div>
     );
