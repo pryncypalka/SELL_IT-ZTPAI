@@ -20,7 +20,7 @@ public class OpenAIIntegrationData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "prompt_id", nullable = false)
-    private Integer promptId;
+    private Long promptId;
 
     @OneToOne
     @JoinColumn(name = "user_id")

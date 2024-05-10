@@ -21,7 +21,7 @@ public class Offers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "offer_id", nullable = false)
-    private Integer offerId;
+    private Long offerId;
 
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;

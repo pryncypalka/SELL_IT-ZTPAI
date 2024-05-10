@@ -24,7 +24,7 @@ public class AllegroIntegrationData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_integration", nullable = false)
-    private Integer idIntegration;
+    private Long idIntegration;
 
     @OneToOne
     @JoinColumn(name = "id_user")

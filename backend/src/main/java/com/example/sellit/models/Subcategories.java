@@ -18,7 +18,7 @@ public class Subcategories {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subcategory_id", nullable = false)
-    private Integer subcategoryId;
+    private Long subcategoryId;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

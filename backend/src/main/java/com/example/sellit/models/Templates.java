@@ -20,7 +20,7 @@ public class Templates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "template_id", nullable = false)
-    private Integer templateId;
+    private Long templateId;
 
     @ManyToOne
     @JoinColumn(name = "item_id")

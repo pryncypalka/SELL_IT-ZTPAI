@@ -17,7 +17,7 @@ public class Photos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_photo", nullable = false)
-    private Integer idPhoto;
+    private Long idPhoto;
 
     @Column(name = "photo_path", nullable = false)
     private String photoPath;
