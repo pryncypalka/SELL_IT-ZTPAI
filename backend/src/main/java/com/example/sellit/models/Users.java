@@ -6,10 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -28,25 +27,36 @@ public class Users {
     @Column(name = "password_hashed", nullable = false)
     private String passwordHashed;
 
-    @Column(name = "create_time", nullable = false)
-    @CreationTimestamp
-    private Timestamp createTime;
-
-
-    @OneToOne
-    @JoinColumn(name = "id_user_details")
-    private UserDetails userDetails;
-
     @Column(name = "email", nullable = false)
     private String email;
 
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
+    @Column(name = "photo_path")
+    private String photoPath;
+
+    @Column(name = "username")
+    private String username;
+
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     @ManyToMany
     @JoinTable(name = "usersRole",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "id_role"))
     private Set<Role> roles;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<Offers> offers;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<Templates> templates;
+
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    private AllegroIntegrationData allegroIntegrationData;
+
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    private OpenAIIntegrationData openAIIntegrationData;
+
+
 }

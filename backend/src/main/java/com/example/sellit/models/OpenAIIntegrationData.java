@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -38,5 +39,5 @@ public class OpenAIIntegrationData {
     private Integer tokenUsed;
 
     @Column(name = "prompt_created_at")
-    private Timestamp promptCreatedAt;
+    private LocalDateTime promptCreatedAt;
 }

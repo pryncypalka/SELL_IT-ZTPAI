@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -36,18 +37,18 @@ public class AllegroIntegrationData {
     private String refreshToken;
 
     @Column(name = "token_expiry")
-    private Timestamp tokenExpiry;
+    private LocalDateTime tokenExpiry;
 
     @Column(name = "allegro_domain")
     private String allegroDomain;
 
     @CreationTimestamp
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at" )
-    private Timestamp updatedAt;
+    private LocalDateTime updatedAt;
 }
 
 

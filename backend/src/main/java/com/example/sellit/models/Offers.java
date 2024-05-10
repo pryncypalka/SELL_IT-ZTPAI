@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -37,5 +38,8 @@ public class Offers {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users users;
+
+    @OneToMany(mappedBy = "offers")
+    private Set<Photos> photos;
 }
 

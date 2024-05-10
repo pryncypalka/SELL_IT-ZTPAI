@@ -29,4 +29,8 @@ public class Item {
             joinColumns = @JoinColumn(name = "item_id"),
             inverseJoinColumns = @JoinColumn(name = "subcategory_id"))
     private Set<Subcategories> subcategories;
+
+    @OneToMany(mappedBy = "item")
+    private Set<Templates> templates;
+
 }

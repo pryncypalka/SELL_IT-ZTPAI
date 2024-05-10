@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -25,4 +26,7 @@ public class Subcategories {
 
     @Column(name = "subcategory_name", nullable = false)
     private String subcategoryName;
+
+    @ManyToMany(mappedBy = "subcategories")
+    private Set<Item> items;
 }
