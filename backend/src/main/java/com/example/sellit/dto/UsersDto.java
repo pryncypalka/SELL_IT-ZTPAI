@@ -19,9 +19,6 @@ public class UsersDto {
     private String photoPath;
     private String username;
     private LocalDateTime createdAt;
-    private Set<Long> roleIds;
-    private Set<Long> offerIds;
-    private Set<Long> templateIds;
     private Long allegroIntegrationDataId;
     private Long openAIIntegrationDataId;
 }

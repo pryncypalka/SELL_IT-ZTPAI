@@ -15,5 +15,5 @@ public class SubcategoriesDto {
     private Long subcategoryId;
     private Long categoryId;
     private String subcategoryName;
-    private Set<Long> itemIds;
+
 }

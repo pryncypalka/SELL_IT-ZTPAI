@@ -20,5 +20,5 @@ public class OffersDto {
     private String title;
     private String description;
     private Long userId;
-    private Set<Long> photosIds;
+
 }

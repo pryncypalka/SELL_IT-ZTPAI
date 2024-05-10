@@ -1,5 +1,6 @@
 package com.example.sellit.dto;
 
+import com.example.sellit.models.Subcategories;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,5 @@ import java.util.Set;
 public class ItemDto {
     private Long itemId;
     private String itemName;
-    private Set<Long> subcategoriesIds;
-    private Set<Long> templatesIds;
+
 }
