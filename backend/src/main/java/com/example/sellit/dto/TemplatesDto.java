@@ -20,3 +20,4 @@ public class TemplatesDto {
     private LocalDateTime createdAt;
     private Boolean isPublic;
 }
+

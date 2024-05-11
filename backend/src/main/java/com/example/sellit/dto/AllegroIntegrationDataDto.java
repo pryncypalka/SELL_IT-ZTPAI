@@ -18,6 +18,4 @@ public class AllegroIntegrationDataDto {
     private String refreshToken;
     private LocalDateTime tokenExpiry;
     private String allegroDomain;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }

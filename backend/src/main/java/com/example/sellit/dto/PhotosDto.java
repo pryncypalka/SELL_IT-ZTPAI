@@ -12,5 +12,4 @@ import lombok.NoArgsConstructor;
 public class PhotosDto {
     private Long idPhoto;
     private String photoPath;
-    private Long offerId;
 }

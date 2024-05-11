@@ -18,5 +18,4 @@ public class OpenAIIntegrationDataDto {
     private String promptText;
     private Integer usedFreeTrials;
     private Integer tokenUsed;
-    private LocalDateTime promptCreatedAt;
 }

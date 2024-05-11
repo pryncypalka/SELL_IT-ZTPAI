@@ -14,11 +14,7 @@ import java.util.Set;
 @Builder
 public class UsersDto {
     private Long userId;
-    private String passwordHashed;
     private String email;
     private String photoPath;
     private String username;
-    private LocalDateTime createdAt;
-    private Long allegroIntegrationDataId;
-    private Long openAIIntegrationDataId;
 }
