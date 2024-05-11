@@ -40,11 +40,9 @@ public class Users {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @ManyToMany
-    @JoinTable(name = "usersRole",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "id_role"))
-    private Set<Role> roles;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private Set<Offers> offers;
