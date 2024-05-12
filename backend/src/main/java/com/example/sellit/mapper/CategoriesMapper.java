@@ -1,7 +1,7 @@
 package com.example.sellit.mapper;
 
 import com.example.sellit.dto.CategoriesDto;
-import com.example.sellit.models.Categories;
+import com.example.sellit.model.Categories;
 import org.springframework.stereotype.Component;
 
 @Component

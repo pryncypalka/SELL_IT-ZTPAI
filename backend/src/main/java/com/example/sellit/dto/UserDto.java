@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ItemDto {
-    private Long itemId;
-    private String itemName;
-
+public class UserDto {
+    private Long userId;
+    private String email;
+    private String photoPath;
+    private String username;
 }

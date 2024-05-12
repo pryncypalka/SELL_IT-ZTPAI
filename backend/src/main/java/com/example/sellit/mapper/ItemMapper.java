@@ -1,7 +1,7 @@
 package com.example.sellit.mapper;
 
 import com.example.sellit.dto.ItemDto;
-import com.example.sellit.models.Item;
+import com.example.sellit.model.Item;
 import org.springframework.stereotype.Component;
 
 @Component
