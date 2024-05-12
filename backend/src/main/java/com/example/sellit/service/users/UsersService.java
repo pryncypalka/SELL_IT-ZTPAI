@@ -10,6 +10,7 @@ public interface UsersService {
     void createUser(Users user);
 
     Users getUser(Long userId);
+    Users getUserByEmail(String email);
     void deleteUser(Long userId);
 
     void updateUser(Long userId, Users user);

@@ -11,13 +11,13 @@ import java.util.Optional;
 
 
 @Service
-public class UsersServiceImplementation implements UsersService {
+public class UsersServiceImp implements UsersService {
 
     private final UsersRepository usersRepository;
 
 
     @Autowired
-    public UsersServiceImplementation(UsersRepository usersRepository) {
+    public UsersServiceImp(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 
@@ -38,6 +38,12 @@ public class UsersServiceImplementation implements UsersService {
     }
 
     @Override
+    public Users getUserByEmail(String email) {
+        return usersRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User with email " + email + " does not exist"));
+    }
+
+    @Override
     public void deleteUser(Long userId) {
         usersRepository.deleteById(userId);
     }
@@ -49,7 +55,7 @@ public class UsersServiceImplementation implements UsersService {
 
         Optional.ofNullable(user.getUsername()).ifPresent(existingUser::setUsername);
         Optional.ofNullable(user.getPhotoPath()).ifPresent(existingUser::setPhotoPath);
-        Optional.ofNullable(user.getPasswordHashed()).ifPresent(existingUser::setPasswordHashed);
+        Optional.ofNullable(user.getPassword()).ifPresent(existingUser::setPassword);
 
         usersRepository.save(existingUser);
     }

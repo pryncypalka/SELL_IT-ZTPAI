@@ -1,9 +1,7 @@
-package com.example.sellit.configuration;
+package com.example.sellit.config;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -15,7 +13,7 @@ import java.util.Arrays;
 public class CorsConfiguration {
 
     @Bean
-    public FilterRegistrationBean<CorsFilter> corsFilter() {
+    public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         org.springframework.web.cors.CorsConfiguration configuration = new org.springframework.web.cors.CorsConfiguration();
 
@@ -32,16 +30,13 @@ public class CorsConfiguration {
         configuration.setAllowedMethods(Arrays.asList(
                 HttpMethod.POST.name(),
                 HttpMethod.GET.name(),
-                HttpMethod.PATCH.name(),
                 HttpMethod.PUT.name(),
-                HttpMethod.DELETE.name()
+                HttpMethod.DELETE.name(),
+                HttpMethod.PATCH.name()
         ));
 
         source.registerCorsConfiguration("/**", configuration);
 
-        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
-        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-
-        return bean;
+        return new CorsFilter(source);
     }
 }

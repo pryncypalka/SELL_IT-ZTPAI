@@ -9,25 +9,30 @@ import org.hibernate.annotations.CreationTimestamp;
 
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "users")
-public class Users {
+public class Users  implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "password_hashed", nullable = false)
-    private String passwordHashed;
+    @Column(name = "password", nullable = false)
+    private String password;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "photo_path")
@@ -56,5 +61,43 @@ public class Users {
     @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
     private OpenAIIntegrationData openAIIntegrationData;
 
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setTokens(List<Token> tokens) {
+        this.tokens = tokens;
+    }
 }
