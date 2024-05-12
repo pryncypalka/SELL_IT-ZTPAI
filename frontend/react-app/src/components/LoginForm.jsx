@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../css/LoginForm.module.css';
+import axios from "axios";
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -8,13 +9,17 @@ function LoginForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Tutaj można dodać logikę wysyłania żądania logowania do serwera
-            // np. za pomocą fetch lub axios
-            console.log('Email:', email);
-            console.log('Password:', password);
+            // Wysyłanie żądania do serwera
+            const response = await axios.get(`http://localhost:8080/api/user/getUserByEmail/${email}`);
+
+            // Obsługa odpowiedzi od serwera
+            if (response.status === 200) {
+                console.log('User data:', response.data);
+            } else {
+                console.error('Error fetching user data:', response.data);
+            }
         } catch (error) {
             console.error('Login error:', error);
-            // Obsługa błędów logowania
         }
     };
 

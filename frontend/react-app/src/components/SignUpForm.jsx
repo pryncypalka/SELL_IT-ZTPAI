@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../css/SignUpForm.module.css';
-
+import axios from 'axios';
 
 function SignUpForm() {
     const [email, setEmail] = useState('');
@@ -10,16 +10,38 @@ function SignUpForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Tutaj można dodać logikę wysyłania żądania rejestracji do serwera
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('Confirm Password:', password2);
+
+        // Sprawdź, czy hasła są takie same
+        if (password !== password2) {
+            setMessages(['Passwords do not match']);
+            return;
+        }
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/user/addUser', {
+                email: email,
+                passwordHashed: password
+            });
+
+            if (response.status === 201) {
+                setMessages(['Registration successful']);
+            } else {
+                setMessages([response.data]);
+            }
+        } catch (error) {
+            setMessages([error.message]);
+        }
     };
 
     return (
         <form className={styles.form_sign_up} onSubmit={handleSubmit}>
             <div className={styles.text1}>Sign up</div>
             <div className={styles.text2}>Create your account. It's free and only takes a minute.</div>
+
+
+            {messages.map((message, index) => (
+                <div key={index}>{message}</div>
+            ))}
 
             <div className={styles.field_name}>Your Email</div>
             <div className={styles.input_field}>
