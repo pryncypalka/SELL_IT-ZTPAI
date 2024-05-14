@@ -1,30 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import AuthService from "../service/auth.service";
+import { isEmail } from "validator";
 import styles from '../css/LoginForm.module.css';
 import axios from "axios";
-function LoginForm() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
+const required = (value) => {
+    if (!value) {
+        return (
+            <div className="" role="alert">
+                This field is required!
+            </div>
+        );
+    }
+};
 
-    const handleSubmit = async (e) => {
+const LoginForm = () => {
+    let navigate = useNavigate();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
+
+    const onChangeEmail = (e) => {
+        const email = e.target.value;
+        setEmail(email);
+    };
+
+    const onChangePassword = (e) => {
+        const password = e.target.value;
+        setPassword(password);
+    };
+
+    const handleLogin = (e) => {
         e.preventDefault();
-        try {
-            // Wysyłanie żądania do serwera
-            const response = await axios.get(`http://localhost:8080/api/user/getUserByEmail/${email}`);
 
-            // Obsługa odpowiedzi od serwera
-            if (response.status === 200) {
-                console.log('User data:', response.data);
-            } else {
-                console.error('Error fetching user data:', response.data);
-            }
-        } catch (error) {
-            console.error('Login error:', error);
+        setMessage("");
+        setLoading(true);
+
+        if (isEmail(email)) {
+            AuthService.login(email, password).then(
+                () => {
+                    navigate("/dashboard");
+                    window.location.reload();
+                },
+                (error) => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+
+                    setLoading(false);
+                    setMessage(resMessage);
+                }
+            );
+        } else {
+            setLoading(false);
+            setMessage("Invalid email format");
         }
     };
 
     return (
-        <form className={styles.form_login} onSubmit={handleSubmit}>
+        <form className={styles.form_login} onSubmit={handleLogin}>
             <div className={styles.text1}>Log in</div>
             <div className={styles.text2}>Enter your details below</div>
 
@@ -34,7 +74,8 @@ function LoginForm() {
                     type="text"
                     name="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={onChangeEmail}
+                    required
                 />
             </div>
             <div className={styles.field_name}>Password</div>
@@ -43,14 +84,15 @@ function LoginForm() {
                     type="password"
                     name="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={onChangePassword}
+                    required
                 />
             </div>
-            <button className={styles.log_in_button} type="submit">
+            <button className={styles.log_in_button} type="submit" disabled={loading}>
                 Log in
             </button>
+            {message && <div className={styles.error_message}>{message}</div>}
             <a className={styles.field_name} href="/signup">Don't have an account?</a>
-
         </form>
     );
 }

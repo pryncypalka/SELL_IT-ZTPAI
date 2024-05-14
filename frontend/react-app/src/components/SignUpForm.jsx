@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import AuthService from "../service/auth.service";
+import { isEmail } from "validator";
 import styles from '../css/SignUpForm.module.css';
 import axios from 'axios';
 
-function SignUpForm() {
+const required = (value) => {
+    if (!value) {
+        return (
+            <div className="" role="alert">
+                This field is required!
+            </div>
+        );
+    }
+};
+
+const SignUpForm = () => {
+    let navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
@@ -12,26 +27,28 @@ function SignUpForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Sprawdź, czy hasła są takie same
+        setMessage("");
+
         if (password !== password2) {
             setMessage('Passwords do not match');
             return;
         }
 
-        try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/register', {
-                username: username,
-                email: email,
-                password: password
-            });
+        if (isEmail(email)) {
+            try {
+                const response = await AuthService.register(username, email, password);
 
-            if (response.status === 200) {
-                setMessage('Registration successful');
-            } else {
-                setMessage(typeof response.data === 'object' ? response.data.error : response.data);
+                if (response.status >= 200 && response.status < 300) {
+                    setMessage('Registration successful');
+                    navigate("/login");
+                } else {
+                    setMessage(typeof response.data === 'object' ? response.data.error : response.data);
+                }
+            } catch (error) {
+                setMessage(error.message);
             }
-        } catch (error) {
-            setMessage(error.message);
+        } else {
+            setMessage("Invalid email format");
         }
     };
 
@@ -39,7 +56,7 @@ function SignUpForm() {
         <form className={styles.form_sign_up} onSubmit={handleSubmit}>
             <div className={styles.text1}>Sign up</div>
 
-             <div>{message}</div>
+            <div>{message}</div>
             <div className={styles.field_name}>Your Username</div>
             <div className={styles.input_field}>
                 <input className={styles.input_field}
@@ -47,6 +64,7 @@ function SignUpForm() {
                        name="username"
                        value={username}
                        onChange={(e) => setUsername(e.target.value)}
+                       required
                 />
 
             </div>
@@ -58,6 +76,7 @@ function SignUpForm() {
                        name="email"
                        value={email}
                        onChange={(e) => setEmail(e.target.value)}
+                       required
                 />
 
             </div>
@@ -69,6 +88,7 @@ function SignUpForm() {
                        name="password"
                        value={password}
                        onChange={(e) => setPassword(e.target.value)}
+                       required
                 />
 
             </div>
@@ -79,6 +99,7 @@ function SignUpForm() {
                        name="password2"
                        value={password2}
                        onChange={(e) => setPassword2(e.target.value)}
+                       required
                 />
 
             </div>
