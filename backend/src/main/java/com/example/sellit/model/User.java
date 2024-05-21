@@ -55,8 +55,6 @@ public class User implements UserDetails{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Template> templates;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private AllegroIntegrationData allegroIntegrationData;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private OpenAIIntegrationData openAIIntegrationData;
