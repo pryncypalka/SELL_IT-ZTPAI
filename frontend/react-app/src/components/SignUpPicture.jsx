@@ -1,4 +1,4 @@
-// import styles from '../css/SignUpPicture.module.css'
+
 
 function LoginPicture() {
   return (

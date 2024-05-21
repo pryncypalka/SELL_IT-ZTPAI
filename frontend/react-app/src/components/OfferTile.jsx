@@ -1,9 +1,12 @@
-
 import styles from '../css/OfferTile.module.css';
 import PropTypes from 'prop-types';
-function OfferTile(props) {
-    return (
 
+function OfferTile(props) {
+    const handleDelete = () => {
+        console.log("Delete button clicked");
+    };
+
+    return (
         <div className={styles.offer_tile}>
             <img className={styles.offer_image} src={props.image} alt="offer_image"/>
             <div className="offer_info">
@@ -11,7 +14,7 @@ function OfferTile(props) {
                 <div className={styles.offer_first_line}>{props.firstLine}</div>
                 <div className={styles.offer_price}>{props.price}</div>
                 <div className={styles.offer_date}>{props.date}</div>
-                <button className={styles.delete_button} type="submit" onClick=''>Delete</button>
+                <button className={styles.delete_button} type="submit" onClick={handleDelete}>Delete</button>
             </div>
         </div>
     );

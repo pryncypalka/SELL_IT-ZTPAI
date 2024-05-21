@@ -43,11 +43,7 @@ function Dashboard() {
                         <OfferTile/>
                         <OfferTile/>
                         <OfferTile/>
-                        <OfferTile/>
-                        <OfferTile/>
-                        <OfferTile/>
-                        <OfferTile/>
-                        <OfferTile/>
+
                     </div>
                 </div>
             </div>
