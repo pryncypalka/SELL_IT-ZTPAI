@@ -24,7 +24,6 @@ function App() {
                             <Route element={<PrivateRoutes />}>
                                 <Route path={'/account'} element={<Account/>}/>
                                 <Route path={'/create'} element={<Create/>}/>
-                                <Route path={'/signup'} element={<SignUp/>}/>
                                 <Route path={'/dashboard'} element={<Dashboard/>}/>
                             </Route>
                         </Routes>

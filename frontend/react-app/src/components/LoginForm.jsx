@@ -43,7 +43,6 @@ const LoginForm = () => {
             AuthService.login(email, password).then(
                 () => {
                     navigate("/dashboard");
-                    window.location.reload();
                 },
                 (error) => {
                     const resMessage =
