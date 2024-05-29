@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ChatDataDto {
-    private Long promptId;
+    private String promptId;
     private Long userId;
-    private Integer usedFreeTrials;
     private Integer tokenUsed;
 }

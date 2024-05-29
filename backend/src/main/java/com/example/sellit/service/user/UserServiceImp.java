@@ -60,7 +60,29 @@ public class UserServiceImp implements UserService {
         userRepository.save(existingUser);
     }
 
+    @Override
+    public Long getUserIdByEmail(String email) {
+        return userRepository.GetUserIdByEmail(email);
+    }
 
+    @Override
+    public void updatePhotoPath(Long userId, String photoPath) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User does not exist"));
+        user.setPhotoPath(photoPath);
+        userRepository.save(user);
+    }
 
+    @Override
+    public Integer getUserFreeOffers(String email) {
+        return userRepository.findUserFreeOffersByEmail(email);
+    }
 
+    @Override
+    public void updateUserFreeOffers(Long userId, Integer i){
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User does not exist"));
+        user.setFreeOffers(i);
+        userRepository.save(user);
+    }
 }

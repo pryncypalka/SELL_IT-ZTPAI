@@ -10,17 +10,16 @@ import org.springframework.stereotype.Service;
 public class ChatServiceImp implements ChatService{
 
     private ChatDataRepository chatDataRepository;
-    private UserRepository userRepository;
 
     @Autowired
     public ChatServiceImp(ChatDataRepository chatDataRepository, UserRepository userRepository) {
         this.chatDataRepository = chatDataRepository;
-        this.userRepository = userRepository;
     }
 
 
     @Override
     public ChatData saveChatData(ChatData chatData) {
+
         return chatDataRepository.save(chatData);
     }
 }

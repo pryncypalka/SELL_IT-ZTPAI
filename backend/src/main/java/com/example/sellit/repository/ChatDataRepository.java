@@ -4,5 +4,5 @@ import com.example.sellit.model.ChatData;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface ChatDataRepository extends JpaRepository<ChatData, Long>{
+public interface ChatDataRepository extends JpaRepository<ChatData, String>{
 }

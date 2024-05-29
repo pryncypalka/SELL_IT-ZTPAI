@@ -13,7 +13,7 @@ public class UserMapper {
                 .userId(user.getUserId())
                 .email(user.getEmail())
                 .photoPath(user.getPhotoPath())
-                .username(user.getUsername())
+                .username(user.getRealUsername())
                 .build();
     }
 

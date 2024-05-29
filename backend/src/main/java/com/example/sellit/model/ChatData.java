@@ -19,16 +19,12 @@ import java.time.LocalDateTime;
 public class ChatData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "prompt_id", nullable = false)
-    private Long promptId;
+    private String promptId;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @Column(name = "used_free_trials")
-    private Integer usedFreeTrials;
 
     @Column(name = "token_used")
     private Integer tokenUsed;

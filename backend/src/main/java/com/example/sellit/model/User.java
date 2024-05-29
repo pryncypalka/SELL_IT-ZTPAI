@@ -45,6 +45,11 @@ public class User implements UserDetails{
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Builder.Default
+    @Column(name = "free_offers")
+    private Integer freeOffers = 20;
+
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
@@ -56,8 +61,8 @@ public class User implements UserDetails{
     private Set<Template> templates;
 
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private ChatData chatData;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<ChatData> chatData;
 
 
 
@@ -87,9 +92,16 @@ public class User implements UserDetails{
     }
 
     @Override
+    public String getUsername() {
+        return email;
+    }
+
+    public String getRealUsername() {
+        return username;
+    }
+
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
-
-
 }
