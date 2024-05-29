@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -13,8 +15,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "openAI_integration_data")
-public class OpenAIIntegrationData {
+@Table(name = "chat_data")
+public class ChatData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,18 +27,13 @@ public class OpenAIIntegrationData {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "prompt_result")
-    private String promptResult;
-
-    @Column(name = "prompt_text")
-    private String promptText;
-
     @Column(name = "used_free_trials")
     private Integer usedFreeTrials;
 
     @Column(name = "token_used")
     private Integer tokenUsed;
 
+    @CreationTimestamp
     @Column(name = "prompt_created_at")
     private LocalDateTime promptCreatedAt;
 }
