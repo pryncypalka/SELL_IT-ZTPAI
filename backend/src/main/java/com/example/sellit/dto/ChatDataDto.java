@@ -5,17 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OpenAIIntegrationDataDto {
+public class ChatDataDto {
     private Long promptId;
     private Long userId;
-    private String promptResult;
-    private String promptText;
     private Integer usedFreeTrials;
     private Integer tokenUsed;
 }

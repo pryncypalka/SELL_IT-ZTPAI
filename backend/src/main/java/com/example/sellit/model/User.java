@@ -57,7 +57,7 @@ public class User implements UserDetails{
 
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private OpenAIIntegrationData openAIIntegrationData;
+    private ChatData chatData;
 
 
 
