@@ -11,13 +11,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TemplatesDto {
+public class TemplateDto {
     private Long templateId;
     private Long itemId;
     private Long userId;
     private String title;
     private String description;
     private LocalDateTime createdAt;
-    private Boolean isPublic;
 }
 
