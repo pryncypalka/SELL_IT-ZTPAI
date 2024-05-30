@@ -33,4 +33,7 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private Set<Template> templates;
 
+    @OneToMany(mappedBy = "item")
+    private Set<Offer> offers;
+
 }
