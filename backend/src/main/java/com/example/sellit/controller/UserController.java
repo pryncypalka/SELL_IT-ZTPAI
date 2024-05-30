@@ -1,5 +1,6 @@
 package com.example.sellit.controller;
 
+import com.example.sellit.dto.PasswordChangeRequest;
 import com.example.sellit.dto.UserDto;
 import com.example.sellit.model.User;
 import com.example.sellit.service.user.UserService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,7 +37,7 @@ public class UserController {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/get-user")
+    @GetMapping("/get")
     public ResponseEntity<UserDto> getUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Long userId = userService.getUserIdByEmail(auth.getName());
@@ -65,10 +67,8 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/delete-user")
-    public ResponseEntity<?> deleteUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Long userId = userService.getUserIdByEmail(auth.getName());
+    @DeleteMapping("/delete-user/{userId}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long userId){
         User user = userService.getUser(userId);
         if (user != null) {
             userService.deleteUser(userId);
@@ -85,7 +85,7 @@ public class UserController {
         Long userId = userService.getUserIdByEmail(auth.getName());
         String timestamp = String.valueOf(System.currentTimeMillis());
         String fileName = auth.getName() + "_" + timestamp + "_" + file.getOriginalFilename();
-        Path path = Paths.get("src/main/java/com/example/sellit/images/" + fileName);
+        Path path = Paths.get("src/main/java/com/example/sellit/images/avatars/" + fileName);
         try {
             Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
@@ -93,5 +93,15 @@ public class UserController {
         }
         userService.updatePhotoPath(userId, path.toString());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    @PutMapping("/password")
+    public ResponseEntity<Void> changePassword(
+            @AuthenticationPrincipal User user,
+            @RequestBody PasswordChangeRequest request
+    ) {
+        userService.changePassword(user, request);
+        return ResponseEntity.ok().build();
     }
 }

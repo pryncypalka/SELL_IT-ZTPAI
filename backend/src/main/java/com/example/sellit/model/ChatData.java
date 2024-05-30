@@ -23,7 +23,7 @@ public class ChatData {
     private String promptId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id" )
     private User user;
 
     @Column(name = "token_used")

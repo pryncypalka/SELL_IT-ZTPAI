@@ -1,4 +1,5 @@
 package com.example.sellit.service.user;
+import com.example.sellit.dto.PasswordChangeRequest;
 import com.example.sellit.model.User;
 public interface UserService {
     boolean checkIfUserExists(String email);
@@ -17,4 +18,6 @@ public interface UserService {
 
 
     void updateUserFreeOffers(Long userId, Integer i);
+
+    void changePassword(User user, PasswordChangeRequest request);
 }
