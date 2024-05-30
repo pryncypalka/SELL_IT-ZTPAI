@@ -1,6 +1,8 @@
 package com.example.sellit.controller;
 
+import com.example.sellit.dto.OfferDto;
 import com.example.sellit.dto.TemplateDto;
+import com.example.sellit.mapper.OfferMapper;
 import com.example.sellit.mapper.TemplateMapper;
 import com.example.sellit.model.Item;
 import com.example.sellit.model.Template;
@@ -14,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/template")
@@ -31,11 +34,14 @@ public class TemplateController {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<List<Template>> getTemplates() {
+    public ResponseEntity<List<TemplateDto>> getTemplates() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Long userId = userService.getUserIdByEmail(auth.getName());
         List<Template> templates = templateService.getAllTemplates(userId);
-        return new ResponseEntity<>(templates, HttpStatus.OK);
+        List<TemplateDto> templatesDto = templates.stream()
+                .map(TemplateMapper::toDto)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(templatesDto, HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
