@@ -7,14 +7,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class ItemMapper {
 
-    public ItemDto toDto(Item item) {
+    public static ItemDto toDto(Item item) {
         return ItemDto.builder()
                 .itemId(item.getItemId())
                 .itemName(item.getItemName())
+                .subcategoryId(item.getSubcategory().getSubcategoryId())
+                .categoryName(item.getSubcategory().getCategory().getCategoryName())
+                .subcategoryName(item.getSubcategory().getSubcategoryName())
                 .build();
     }
 
-    public Item toEntity(ItemDto itemDto) {
+    public static Item toEntity(ItemDto itemDto) {
 
         return Item.builder()
                 .itemId(itemDto.getItemId())

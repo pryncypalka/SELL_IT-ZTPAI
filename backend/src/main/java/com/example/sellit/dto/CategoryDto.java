@@ -5,15 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SubcategoriesDto {
-    private Long subcategoryId;
+public class CategoryDto {
     private Long categoryId;
-    private String subcategoryName;
+    private String categoryName;
 
 }

@@ -13,7 +13,7 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "subcategories")
-public class Subcategories {
+public class Subcategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class Subcategories {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private  Categories categories;
+    private Category category;
 
     @Column(name = "subcategory_name", nullable = false)
     private String subcategoryName;
 
-    @ManyToMany(mappedBy = "subcategories")
+    @OneToMany(mappedBy = "subcategory")
     private Set<Item> items;
 }

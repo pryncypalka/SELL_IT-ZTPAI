@@ -13,7 +13,7 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "categories")
-public class Categories {
+public class Category {
 
     @Id
     @Column(name = "category_id", nullable = false)
@@ -22,6 +22,6 @@ public class Categories {
     @Column(name = "category_name", nullable = false)
     private String categoryName;
 
-    @OneToMany(mappedBy = "categories")
-    private Set<Subcategories> subcategories;
+    @OneToMany(mappedBy = "category")
+    private Set<Subcategory> subcategories;
 }

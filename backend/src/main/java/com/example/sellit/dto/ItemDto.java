@@ -12,5 +12,9 @@ import lombok.NoArgsConstructor;
 public class ItemDto {
     private Long itemId;
     private String itemName;
+    private Long subcategoryId;
+    private String categoryName;
+    private String subcategoryName;
+
 
 }

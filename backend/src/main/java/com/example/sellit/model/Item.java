@@ -24,11 +24,9 @@ public class Item {
     @Column(name = "item_name", nullable = false)
     private String itemName;
 
-    @ManyToMany
-    @JoinTable(name = "item_subcategory",
-            joinColumns = @JoinColumn(name = "item_id"),
-            inverseJoinColumns = @JoinColumn(name = "subcategory_id"))
-    private Set<Subcategories> subcategories;
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id")
+    private Subcategory subcategory;
 
     @OneToMany(mappedBy = "item")
     private Set<Template> templates;
