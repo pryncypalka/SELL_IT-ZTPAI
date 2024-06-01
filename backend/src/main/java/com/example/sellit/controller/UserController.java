@@ -5,6 +5,8 @@ import com.example.sellit.dto.UserDto;
 import com.example.sellit.model.User;
 import com.example.sellit.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -95,12 +98,32 @@ public class UserController {
     }
 
     @PutMapping("/password")
-    public ResponseEntity<Void> changePassword(
+    public ResponseEntity<?> changePassword(
             @RequestBody PasswordChangeRequest request
     ) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Long userId = userService.getUserIdByEmail(auth.getName());
-        userService.changePassword(userService.getUser(userId), request);
+        try {
+            userService.changePassword(userService.getUser(userId), request);
+        } catch(IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/images")
+    public ResponseEntity<Resource> getImage(@RequestParam String path) {
+        try {
+            Path file = Paths.get(path);
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable()) {
+                return ResponseEntity.ok().body(resource);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (MalformedURLException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
