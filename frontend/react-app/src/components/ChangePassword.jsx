@@ -28,7 +28,11 @@ function ChangePassword() {
 
             setMessage("Password changed successfully");
         } catch (error) {
-            setMessage("Error changing password");
+            if (error.response && error.response.data && error.response.data.message) {
+                setMessage(error.response.data.message);
+            } else {
+                setMessage("Error changing password");
+            }
         }
     };
 
