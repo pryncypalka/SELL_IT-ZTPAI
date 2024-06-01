@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types'; // Importujemy PropTypes
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../css/SearchBar.module.css';
 
-function SearchBar({ placeholder }) {
-    const [searchTerm, setSearchTerm] = useState('');
-
+function SearchBar({ placeholder, onSearch }) {
     const handleChange = (e) => {
-        setSearchTerm(e.target.value);
-        // Tutaj możesz umieścić logikę wyszukiwania, jeśli chcesz ją obsłużyć na bieżąco
+        onSearch(e.target.value);
     };
 
     return (
@@ -15,20 +12,20 @@ function SearchBar({ placeholder }) {
             <input className={styles.input_search}
                    type="text"
                    name="search_template"
-                   value={searchTerm}
                    onChange={handleChange}
-                   placeholder={placeholder} // Placeholder jako parametr funkcji
+                   placeholder={placeholder}
             />
         </div>
     );
 }
 
 SearchBar.propTypes = {
-    placeholder: PropTypes.string // Placeholder powinien być typu string
+    placeholder: PropTypes.string,
+    onSearch: PropTypes.func.isRequired
 };
 
 SearchBar.defaultProps = {
-    placeholder: "Wyszukaj..." // Domyślny placeholder
+    placeholder: "Search..."
 };
 
 export default SearchBar;

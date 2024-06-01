@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import styles from '../css/CategoryTile.module.css';
-function CategoryTile({ category, imagePath }) {
+
+function CategoryTile({ category, onClick }) {
     return (
-        <div className={styles.category_tile} >
-            <img className={styles.category_image} src={imagePath} alt="category_image"/>
+        <div className={styles.category_tile} onClick={onClick}>
             <div className={styles.category_name}>{category}</div>
         </div>
     );
@@ -11,14 +11,12 @@ function CategoryTile({ category, imagePath }) {
 
 CategoryTile.propTypes = {
     category: PropTypes.string,
-    imagePath: PropTypes.string,
+    onClick: PropTypes.func,
 };
 
 CategoryTile.defaultProps = {
     category: 'Default Category',
-    imagePath: '/assets/image/profile_empty.png',
+    onClick: () => {},
 };
 
 export default CategoryTile;
-
-
