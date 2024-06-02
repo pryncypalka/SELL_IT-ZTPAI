@@ -2,9 +2,28 @@ import styles from '../css/OfferTile.module.css';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import authHeader from '../service/auth-header';
+import {useEffect, useState} from "react";
 
 
 function OfferTile( {offerId, image, title, description, price, date}) {
+    const [imagePath, setImagePath] = useState('');
+
+
+    useEffect(() => {
+        if (image === null) {
+            return;
+        }
+
+        const imageUrl = `http://localhost:8080/api/user/images?path=${encodeURIComponent(image.replace(/\\\\/g, '/'))}`;
+        axios.get(imageUrl, { headers: authHeader() })
+            .then(response => {
+                setImagePath(imageUrl);
+            })
+            .catch(error => {
+                console.error('There was an error fetching the data!', error);
+            });
+    }, [image]);
+
     const handleDelete = () => {
         if (window.confirm('Are you sure you want to delete this offer?')) {
             axios.delete(`http://localhost:8080/api/offer/delete/${offerId}`, { headers: authHeader() })
@@ -21,7 +40,8 @@ function OfferTile( {offerId, image, title, description, price, date}) {
 
     return (
         <div className={styles.offer_tile}>
-            <img className={styles.offer_image} src={image} alt="offer_image"/>
+            <img className={styles.offer_image} src={imagePath || '/assets/image/image-not-found-icon.png'}
+                 alt="offer_image"/>
             <div className="offer_info">
                 <div className={styles.offer_name}>{title}</div>
                 <div className={styles.offer_first_line}>{description}</div>
@@ -44,7 +64,7 @@ OfferTile.propTypes = {
 
 OfferTile.defaultProps = {
     OfferId: 0,
-    image: '/assets/image/logo.png',
+    image: '/assets/image/image-not-found-icon.png',
     title: 'Default Name',
     description: 'Default First Line',
     price: 0,
