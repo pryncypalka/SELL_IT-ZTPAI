@@ -20,4 +20,6 @@ public interface UserService {
     void updateUserFreeOffers(Long userId, Integer i);
 
     void changePassword(User user, PasswordChangeRequest request);
+
+    Integer getFreeOffers(Long userId);
 }

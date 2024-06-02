@@ -99,4 +99,9 @@ public class UserServiceImp implements UserService {
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
     }
+    @Override
+    public Integer getFreeOffers(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        return user.getFreeOffers();
+    }
 }

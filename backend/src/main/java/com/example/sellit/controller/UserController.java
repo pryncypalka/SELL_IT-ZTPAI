@@ -126,4 +126,12 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/freeOffers")
+    public ResponseEntity<Integer> getFreeOffers() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Long userId = userService.getUserIdByEmail(auth.getName());
+        Integer freeOffers = userService.getFreeOffers(userId);
+        return ResponseEntity.ok(freeOffers);
+    }
 }
