@@ -1,11 +1,11 @@
-
 import PropTypes from 'prop-types';
+import styles from '../../css/ComboBox.module.css';
 
-function ComboBox({ selectLabel, selectName, options }) {
+function ComboBox({ selectLabel, selectName, options , onOptionSelected}) {
     return (
-        <div className="combobox">
+        <div className={styles.combobox}>
             <label htmlFor={selectName}>{selectLabel}:</label>
-            <select name={selectName} id={selectName}>
+            <select name={selectName} id={selectName} onChange={e => onOptionSelected(e.target.value)}>
                 {options.map((option, index) => (
                     <option key={index} value={option.value}>{option.label}</option>
                 ))}

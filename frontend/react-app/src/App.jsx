@@ -10,6 +10,7 @@ import {Route, Routes} from "react-router-dom";
 
 import LoggedRoutes from "./utils/LoggedRoutes";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import Offer from "./components/subSites/Offer";
 
 function App() {
         return (
@@ -25,6 +26,7 @@ function App() {
                                 <Route path={'/account'} element={<Account/>}/>
                                 <Route path={'/create'} element={<Create/>}/>
                                 <Route path={'/dashboard'} element={<Dashboard/>}/>
+                                <Route path={'/offer'} element={<Offer/>}/>
                             </Route>
                         </Routes>
                     </div>

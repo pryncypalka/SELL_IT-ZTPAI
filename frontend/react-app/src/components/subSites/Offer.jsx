@@ -1,27 +1,15 @@
 
 import Navbar from "../Navbar";
-import LogoContainer from "../LogoContainer";
-import Avatar from "../Avatar";
-import SearchBar from "../SearchBar";
-import TemplateTile from "../TemplateTile";
 import BlueButton from "../BlueButton";
-import OfferTile from "../OfferTile";
+import OfferForm from "../offerCreating/OfferForm";
 import styles from '../../css/sub_sites_css/Offer.module.css';
-
-function Dashboard() {
+function Offer() {
     return (
-        <>
-            <LogoContainer/>
+        <div >
             <Navbar/>
-            <Avatar/>
-            <BlueButton text={"Create new offer"}/>
-            <SearchBar/>
-            <TemplateTile template={"Template"}/>
-            <SearchBar/>
-            <OfferTile/>
-
-        </>
+            <OfferForm/>
+        </div>
     );
 }
 
-export default Dashboard;
+export default Offer;

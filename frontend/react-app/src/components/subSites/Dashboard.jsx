@@ -95,7 +95,7 @@ function Dashboard() {
                     <SearchBar onSearch={handleOfferSearch}/>
                     <div className={styles.offer_tiles_container}>
                         {filteredOffers.map(offer => (
-                            <OfferTile key={offer.offerId} offerId={offer.offerId} title={offer.title} date={offer.createdAt} description={offer.description} price={offer.price} />
+                            <OfferTile key={offer.offerId} offerId={offer.offerId} title={offer.title} date={offer.createdAt} description={offer.description} price={offer.price} image={offer.firstPhoto}/>
                         ))}
                     </div>
                 </div>
