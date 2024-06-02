@@ -8,6 +8,12 @@
     background-color: #2F2F42;
     border-radius: 12px;
     overflow: hidden;
+    padding-right: 40px;
+}
+
+.offer_info {
+    width : 270px;
+    overflow: hidden;
 }
 
 .offer_name {
