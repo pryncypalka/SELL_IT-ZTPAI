@@ -33,7 +33,7 @@ public class Template {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 3000)
     private String description;
 
     @CreationTimestamp

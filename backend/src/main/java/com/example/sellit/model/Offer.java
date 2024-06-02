@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -38,7 +39,7 @@ public class Offer {
     @JoinColumn(name = "item_id")
     private Item item;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 3000)
     private String description;
 
     @ManyToOne
@@ -46,6 +47,6 @@ public class Offer {
     private User user;
 
     @OneToMany(mappedBy = "offer")
-    private Set<Photo> photos;
+    private List<Photo> photos;
 }
 

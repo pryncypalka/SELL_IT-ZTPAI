@@ -101,4 +101,5 @@ public class OfferController {
         offerService.deleteOffer(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }

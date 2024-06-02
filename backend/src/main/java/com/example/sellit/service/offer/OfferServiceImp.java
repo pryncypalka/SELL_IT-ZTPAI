@@ -9,6 +9,7 @@ import com.example.sellit.repository.PhotoRepository;
 import com.example.sellit.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -60,8 +61,15 @@ public class OfferServiceImp implements OfferService {
     }
 
     @Override
+    @Transactional
     public void deleteOffer(Long id) {
-        offerRepository.deleteById(id);
+        Offer offer = offerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Offer not found"));
+
+        for (Photo photo : offer.getPhotos()) {
+            photoRepository.delete(photo);
+        }
+        offerRepository.delete(offer);
     }
     @Override
     public Offer updateOfferPhotos(Long id, List<String> photoPaths) {
