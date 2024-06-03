@@ -31,7 +31,8 @@ function OfferTile( {offerId, image, title, description, price, date}) {
     };
 
 
-    const handleDelete = () => {
+    const handleDelete = (event) => {
+        event.stopPropagation();
         if (window.confirm('Are you sure you want to delete this offer?')) {
             axios.delete(`http://localhost:8080/api/offer/delete/${offerId}`, { headers: authHeader() })
                 .then(response => {

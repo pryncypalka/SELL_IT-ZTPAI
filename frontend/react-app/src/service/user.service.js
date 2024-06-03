@@ -1,0 +1,25 @@
+import axios from "axios";
+import authHeader from "./auth-header";
+
+const API_URL = "http://localhost:8080/api/user/";
+
+
+
+const isAdmin = async () => {
+    return await axios
+        .get(API_URL + "admin", { headers: authHeader() })
+        .then((response) => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch((error) => {
+            console.error("Error checking if user is admin:", error);
+            throw error;
+        });
+};
+
+const UserService = {
+    isAdmin,
+};
+
+export default UserService;

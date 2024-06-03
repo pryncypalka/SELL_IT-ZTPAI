@@ -1,0 +1,26 @@
+.adminPanel {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.userList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.userListItem {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.userListItem:hover {
+    background-color: #ddd;
+}
+
+.userDetails {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: rgba(154, 21, 21, 0.51);
+}

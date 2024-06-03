@@ -10,8 +10,10 @@ import {Route, Routes} from "react-router-dom";
 
 import LoggedRoutes from "./utils/LoggedRoutes";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import AdminRoutes from "./utils/AdminRoutes";
 import Offer from "./components/subSites/Offer";
 import OfferInspect from "./components/subSites/OfferInspect";
+import AdminPanel from "./components/subSites/AdminPanel";
 
 function App() {
         return (
@@ -22,7 +24,9 @@ function App() {
                                 <Route path={'/signup'} element={<SignUp/>}/>
                                 <Route path={'/login'} element={<Login/>}/>
                             </Route>
-
+                            <Route element={<AdminRoutes />}>
+                                <Route element={<AdminPanel/>} path="/adminpanel" />
+                            </Route>
                             <Route element={<PrivateRoutes />}>
                                 <Route path={'/account'} element={<Account/>}/>
                                 <Route path={'/create'} element={<Create/>}/>

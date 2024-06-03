@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'; // Importujemy PropTypes
+import PropTypes from 'prop-types';
 import styles from '../css/TemplateTile.module.css';
 import axios from 'axios';
 import authHeader from '../service/auth-header';
@@ -8,12 +8,14 @@ import { useNavigate} from 'react-router-dom';
 function TemplateTile({templateId,  name, subcategoryName, createdAt, description , categoryName}) {
     const navigate = useNavigate();
 
-    const handleDelete = () => {
+    const handleDelete = (event) => {
+        event.stopPropagation();
+
         if (window.confirm('Are you sure you want to delete this template?')) {
             axios.delete(`http://localhost:8080/api/template/delete/${templateId}`, { headers: authHeader() })
                 .then(response => {
                     console.log('Template deleted successfully');
-                    window.location.reload(); // Add this line
+                    window.location.reload();
 
                 })
                 .catch(error => {
