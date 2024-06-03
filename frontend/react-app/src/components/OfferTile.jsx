@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import authHeader from '../service/auth-header';
 import {useEffect, useState} from "react";
-
+import { useNavigate} from "react-router-dom";
 
 function OfferTile( {offerId, image, title, description, price, date}) {
     const [imagePath, setImagePath] = useState('');
+    const navigate = useNavigate();
+
 
 
     useEffect(() => {
@@ -24,6 +26,11 @@ function OfferTile( {offerId, image, title, description, price, date}) {
             });
     }, [image]);
 
+    const handleInspect = () => {
+        navigate('/offerInspect', { state: { id: offerId, isOffer: true } });
+    };
+
+
     const handleDelete = () => {
         if (window.confirm('Are you sure you want to delete this offer?')) {
             axios.delete(`http://localhost:8080/api/offer/delete/${offerId}`, { headers: authHeader() })
@@ -39,7 +46,7 @@ function OfferTile( {offerId, image, title, description, price, date}) {
     };
 
     return (
-        <div className={styles.offer_tile}>
+        <div className={styles.offer_tile} onClick={handleInspect}>
             <img className={styles.offer_image} src={imagePath || '/assets/image/image-not-found-icon.png'}
                  alt="offer_image"/>
             <div className="offer_info">
