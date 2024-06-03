@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'; // Importujemy PropTypes
 import styles from '../css/TemplateTile.module.css';
 import axios from 'axios';
 import authHeader from '../service/auth-header';
+import { useNavigate} from 'react-router-dom';
 
 function TemplateTile({templateId,  name, subcategoryName, createdAt, description , categoryName}) {
+    const navigate = useNavigate();
+
     const handleDelete = () => {
         if (window.confirm('Are you sure you want to delete this template?')) {
             axios.delete(`http://localhost:8080/api/template/delete/${templateId}`, { headers: authHeader() })
@@ -19,8 +22,12 @@ function TemplateTile({templateId,  name, subcategoryName, createdAt, descriptio
         }
     };
 
+    const handleInspect = () => {
+        navigate('/offerInspect', { state: { id: templateId, isOffer: false } });
+    };
+
     return (
-        <div className={styles.template_tile}>
+        <div className={styles.template_tile} onClick={handleInspect}>
             <div className={styles.template_name}>{name}</div>
             <div className={styles.template_date}>{`${categoryName} / ${subcategoryName}`}</div>
             <div className={styles.template_date}>{createdAt}</div>

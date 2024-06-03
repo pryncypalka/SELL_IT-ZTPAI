@@ -54,7 +54,7 @@ function Create() {
                     <div className={styles.result_tiles_container}>
                         <SearchBar onSearch={setSearchTerm}/>
                         {selectedCategory && <BlueButton onClick={handleResetClick} text={`Wyświetlane kategorie: ${selectedCategory}`}></BlueButton>}
-                        {filteredItems.map(item => <ItemTemplate key={item.itemId} itemName={item.itemName} category={item.categoryName} subcategory={item.subcategoryName}/>)}
+                        {filteredItems.map(item => <ItemTemplate key={item.itemId} itemId={item.itemId}  itemName={item.itemName} category={item.categoryName} subcategory={item.subcategoryName}/>)}
                     </div>
                 </div>
                 <div className={styles.categories_box}>
