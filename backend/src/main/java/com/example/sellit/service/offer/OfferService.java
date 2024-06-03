@@ -18,4 +18,6 @@ public interface OfferService {
     void deleteOffer(Long id);
 
     Offer updateOfferPhotos(Long id, List<String> photos);
+
+    List<String> getPhotoPathsByOfferId(Long offerId);
 }

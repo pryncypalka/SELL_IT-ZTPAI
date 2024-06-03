@@ -102,4 +102,10 @@ public class OfferController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/offers/{offerId}/photoPaths")
+    public ResponseEntity<List<String>> getPhotoPathsByOfferId(@PathVariable Long offerId) {
+        List<String> photoPaths = offerService.getPhotoPathsByOfferId(offerId);
+        return ResponseEntity.ok(photoPaths);
+    }
+
 }

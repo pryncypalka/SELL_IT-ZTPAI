@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OfferServiceImp implements OfferService {
@@ -82,5 +83,11 @@ public class OfferServiceImp implements OfferService {
             photoRepository.save(photo);
         }
         return offerRepository.save(offer);
+    }
+
+    @Override
+    public List<String> getPhotoPathsByOfferId(Long offerId) {
+        Offer offer = offerRepository.findById(offerId).orElseThrow(() -> new IllegalArgumentException("Offer not found"));
+        return offer.getPhotos().stream().map(Photo::getPhotoPath).collect(Collectors.toList());
     }
 }
