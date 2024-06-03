@@ -3,12 +3,14 @@ package com.example.sellit.service.user;
 
 
 import com.example.sellit.dto.PasswordChangeRequest;
+import com.example.sellit.model.Role;
 import com.example.sellit.model.User;
 import com.example.sellit.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -103,5 +105,17 @@ public class UserServiceImp implements UserService {
     public Integer getFreeOffers(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
         return user.getFreeOffers();
+    }
+
+    @Override
+    public Boolean isAdmin(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User with id " + userId + " does not exist"));
+        return user.getRole() == Role.ADMIN;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

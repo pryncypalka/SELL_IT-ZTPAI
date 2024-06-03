@@ -2,6 +2,7 @@ package com.example.sellit.controller;
 
 import com.example.sellit.dto.PasswordChangeRequest;
 import com.example.sellit.dto.UserDto;
+import com.example.sellit.mapper.UserMapper;
 import com.example.sellit.model.User;
 import com.example.sellit.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.sellit.mapper.UserMapper.toDto;
 
@@ -47,6 +50,16 @@ public class UserController {
 
         return new ResponseEntity<>(toDto(user), HttpStatus.OK);
     }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        List<UserDto> userDtos = users.stream()
+                .map(UserMapper::toDto)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(userDtos, HttpStatus.OK);
+    }
+
 
     @GetMapping("/get-user-by-email/{email}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable String email) {
@@ -133,5 +146,15 @@ public class UserController {
         Long userId = userService.getUserIdByEmail(auth.getName());
         Integer freeOffers = userService.getFreeOffers(userId);
         return ResponseEntity.ok(freeOffers);
+    }
+
+    @GetMapping("/admin")
+    public ResponseEntity<Boolean> isAdmin() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Long userId = userService.getUserIdByEmail(auth.getName());
+
+        return ResponseEntity.ok(
+                userService.isAdmin(userId)
+        );
     }
 }
