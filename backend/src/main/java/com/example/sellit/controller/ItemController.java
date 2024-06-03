@@ -2,17 +2,17 @@ package com.example.sellit.controller;
 
 import com.example.sellit.dto.CategoryDto;
 import com.example.sellit.dto.ItemDto;
+import com.example.sellit.dto.SubcategoryDto;
+import com.example.sellit.mapper.SubcategoryMapper;
 import com.example.sellit.model.Category;
 import com.example.sellit.model.Item;
+import com.example.sellit.model.Subcategory;
 import com.example.sellit.service.item.ItemService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.sellit.mapper.ItemMapper;
 import com.example.sellit.mapper.CategoryMapper;
 import java.util.List;
@@ -61,5 +61,23 @@ public class ItemController {
                 .map(CategoryMapper::toDto)
                 .collect(Collectors.toList());
         return new ResponseEntity<>(categoriesDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/add-category")
+    public ResponseEntity<CategoryDto> addCategory(@RequestBody Category category) {
+        Category newCategory = itemService.addCategory(category);
+        return new ResponseEntity<>(CategoryMapper.toDto(newCategory), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/add-item")
+    public ResponseEntity<ItemDto> addItem(@RequestBody Item item) {
+        Item newItem = itemService.addItem(item);
+        return new ResponseEntity<>(ItemMapper.toDto(newItem), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/add-subcategory")
+    public ResponseEntity<SubcategoryDto> addSubcategory(@RequestBody Subcategory Subcategory) {
+        Subcategory newCategory = itemService.addSubcategory(Subcategory);
+        return new ResponseEntity<>(SubcategoryMapper.toDto(newCategory), HttpStatus.CREATED);
     }
 }
